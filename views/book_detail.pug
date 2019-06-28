@@ -1,0 +1,35 @@
+extends layout
+block content
+ 
+ 
+ h1=book_name.title
+ ul
+  li #[strong Author]: #{book_name.author.name}
+  li #[strong ISBN]: #{book_name.isbn}
+  li #[strong Genre(s)]: 
+     each genre in book_name.genre
+      ul
+       li #{genre.name}
+  li #[strong Summary]: #{book_name.summary}
+ 
+ div(style='margin-left:20px;margin-top:20px')
+  h4 Book Copies
+  
+  
+  dl
+   each book in book_instance
+    dt
+     a(href=book.url) #{book.status}
+    dd #{book.imprint}
+    
+    
+    
+   else 
+    p There are no copies of #{book_name.title}
+    
+    
+  hr
+  p
+   a(href=book_name.url+'/delete') Delete Book
+  p
+   a(href=book_name.url+'/update') Update Book

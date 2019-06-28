@@ -1,0 +1,25 @@
+extends layout
+block content
+
+  h1 Book ID: #{instance._id}
+  
+  p #[strong Title:] 
+    a(href=book.url) #{book.title}
+  p #[strong Imprint:] #{instance.imprint}
+
+  p #[strong Status:] 
+    if instance.status=='Available'
+     span.text-success #{instance.status}
+    else if instance.status=='Maintenance'
+     span.text-danger #{instance.status}
+    else
+     span.text-warning #{instance.status} 
+    
+  if instance.status!='Available'
+    p #[strong Due back:] #{instance.due_date}
+    
+  hr
+  p
+   a(href=instance.url+'/delete') Delete Book Instance
+  p
+   a(href=instance.url+'/update') Update Book Instance
